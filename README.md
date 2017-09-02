@@ -2,7 +2,7 @@
 
 ## Installation
 
-Place the content of this repo inside the `scripts` folder of your hexo installation (create it if necessary).
+Place the content of the `scripts` folder of this repo inside the `scripts` folder of your hexo installation (create it if necessary).
 
 ## API specifications
 
@@ -12,12 +12,23 @@ The api is specifically tailored to our website. Feel free to modify it as you l
 
 Returns a json object with `id`, `title`, `author`, `date`, and `url`
 
-### `POST /api/post/content`
+### `POST /api/post/content/by-id`
 
 Data should be `application/json`, and should contain an `id` property
 
 It returns an object with the same properties as the previous endpoint plus a `content` property,
 which contains the html-formatted content.
+
+### `POST /api/post/content/by-url`
+
+Same as above, but takes a json object with `id_suffix` as a substring of the end of an article id and `sanitized_title` which should match the
+title given in an uri.
+
+The function that sanitizes a title is the following: 
+
+```javascript
+const sanitize = title => title.match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();
+```
 
 ## License
 
