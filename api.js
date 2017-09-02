@@ -17,13 +17,13 @@ hexo.extend.filter.register('server_middleware', (app) => {
                         author: post.author,
                         date: post.date,
                         id: post._id,
-                        url: 'https://salondesdevs.io/article/' + post._id.substr(-3) + '/' + sanitize(post.title)
+                        uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title)
                     })
                 )
             )
         );
     });
-    app.use(hexo.config.root + 'api/post/content', (req, res) => {
+    app.use(hexo.config.root + 'api/post/content/by-id', (req, res) => {
         res.end(
             JSON.stringify(
                 hexo.model('Post').toArray()
@@ -34,10 +34,29 @@ hexo.extend.filter.register('server_middleware', (app) => {
                             author: post.author,
                             date: post.date,
                             id: post._id,
-                            url: 'https://salondesdevs.io/article/' + post._id.substr(-3) + '/' + sanitize(post.title),
+                            uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title),
                             content: post.content
                         })
-                    )
+                    )[0]
+            )
+        );
+    });
+    app.use(hexo.config.root + 'api/post/content/by-uri/', (req, res) => {
+        console.log(req.id_suffix, req.sanitized_title)
+        res.end(
+            JSON.stringify(
+                hexo.model('Post').toArray()
+                    .filter(post => post._id.endsWith(req.body.id_suffix) && sanitize(post.title) === req.body.sanitized_title)
+                    .map(
+                        post => ({
+                            title: post.title,
+                            author: post.author,
+                            date: post.date,
+                            id: post._id,
+                            uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title),
+                            content: post.content
+                        })
+                    )[0]
             )
         );
     });
