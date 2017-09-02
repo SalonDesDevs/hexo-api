@@ -42,7 +42,6 @@ hexo.extend.filter.register('server_middleware', (app) => {
         );
     });
     app.use(hexo.config.root + 'api/post/content/by-uri/', (req, res) => {
-        console.log(req.id_suffix, req.sanitized_title)
         res.end(
             JSON.stringify(
                 hexo.model('Post').toArray()
