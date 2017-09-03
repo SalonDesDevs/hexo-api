@@ -17,6 +17,7 @@ hexo.extend.filter.register('server_middleware', (app) => {
                         author: post.author,
                         date: post.date,
                         id: post._id,
+                        picture: 'https://via.placeholder.com/800x460/3a3a3a/ffffff', //TODO: Use real article picture
                         uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title)
                     })
                 )
