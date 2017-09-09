@@ -30,6 +30,14 @@ The function that sanitizes a title is the following:
 const sanitize = title => title.match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();
 ```
 
+### `GET /icon/by-language/:language`
+
+Replace `:language` with the language you want the icon of. The result is an svg from devicon.
+
+## Dependencies
+
+This API depends on `body-parser` and `devicons`
+
 ## License
 
 Unlicense

@@ -1,6 +1,10 @@
 /*global hexo: true */
 
 const bodyParser = require('body-parser');
+const deviconPath = require.resolve('devicon');
+const fs = require('fs');
+const path = require('path');
+const devicons = JSON.parse(fs.readFileSync(path.resolve(deviconPath, '../devicon.json')));
 
 const sanitize = title => title.match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();
 
@@ -59,5 +63,18 @@ hexo.extend.filter.register('server_middleware', (app) => {
                     )[0]
             )
         );
+    });
+    app.use(hexo.config.root + 'api/icon/by-language/', (req, res) => {
+        const language = devicons.find(e => e.name === req.url.slice(1));
+        const variation = (language && language.versions.svg[0]);
+        if(!variation) {
+            res.statusCode = 404;
+            res.end('');
+            return;
+        }
+        fs.readFile(path.resolve(deviconPath, `../icons/${language.name}/${language.name}-${variation}.svg`), (err, content) => {
+            res.setHeader('content-type', 'image/svg+xml');
+            res.end(content.toString());
+        });
     });
 });
