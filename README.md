@@ -6,7 +6,7 @@ Place the content of the `scripts` folder of this repo inside the `scripts` fold
 
 ## API specifications
 
-The api is specifically tailored to our website. Feel free to modify it as you like
+**The api is specifically tailored to our website.** Feel free to modify it as you like
 
 ### `GET /api/posts/list`
 
@@ -36,7 +36,7 @@ Replace `:language` with the language you want the icon of. The result is an svg
 
 ## Dependencies
 
-This API depends on `body-parser` and `devicons`
+This API depends on `body-parser` ~~and `devicons`~~. Please make sure to clone the repo recursively.
 
 ## License
 
