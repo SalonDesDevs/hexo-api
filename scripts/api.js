@@ -1,10 +1,9 @@
 /*global hexo: true */
 
 const bodyParser = require('body-parser');
-const deviconPath = require.resolve('devicon');
 const fs = require('fs');
 const path = require('path');
-const devicons = JSON.parse(fs.readFileSync(path.resolve(deviconPath, '../devicon.json')));
+const devicons = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../devicon/devicon.json')));
 
 const sanitize = title => title.match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();
 
@@ -72,8 +71,8 @@ hexo.extend.filter.register('server_middleware', (app) => {
             res.end('');
             return;
         }
-        fs.readFile(path.resolve(deviconPath, `../icons/${language.name}/${language.name}-${variation}.svg`), (err, content) => {
-            res.setHeader('Cache-Control', 'max-age=2678400')
+        fs.readFile(path.resolve(__dirname, `../devicon/icons/${language.name}/${language.name}-${variation}.svg`), (err, content) => {
+            res.setHeader('Cache-Control', 'max-age=2678400');
             res.setHeader('Content-Type', 'image/svg+xml');
             res.end(content.toString());
         });
