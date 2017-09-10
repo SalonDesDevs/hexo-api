@@ -19,7 +19,7 @@ hexo.extend.filter.register('server_middleware', (app) => {
                         title: post.title,
                         author: post.author,
                         date: post.date,
-                        tags: post.tags,
+                        tags: post.tags.data.map(c => c.name),
                         id: post._id,
                         picture: 'https://via.placeholder.com/800x460/3a3a3a/ffffff', //TODO: remove this. Generated on the frontend
                         uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title)
@@ -38,7 +38,7 @@ hexo.extend.filter.register('server_middleware', (app) => {
                             title: post.title,
                             author: post.author,
                             date: post.date,
-                            tags: post.tags,
+                            tags: post.tags.data.map(c => c.name),
                             id: post._id,
                             uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title),
                             content: post.content
@@ -57,7 +57,7 @@ hexo.extend.filter.register('server_middleware', (app) => {
                             title: post.title,
                             author: post.author,
                             date: post.date,
-                            tags: post.tags,
+                            tags: post.tags.data.map(c => c.name),
                             id: post._id,
                             uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title),
                             content: post.content
