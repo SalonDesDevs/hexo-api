@@ -1,0 +1,3 @@
+[submodule "scripts/devicon"]
+	path = scripts/devicon
+	url = https://github.com/konpa/devicon.git
