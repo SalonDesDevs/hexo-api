@@ -73,7 +73,8 @@ hexo.extend.filter.register('server_middleware', (app) => {
             return;
         }
         fs.readFile(path.resolve(deviconPath, `../icons/${language.name}/${language.name}-${variation}.svg`), (err, content) => {
-            res.setHeader('content-type', 'image/svg+xml');
+            res.setHeader('Cache-Control', 'max-age=2678400')
+            res.setHeader('Content-Type', 'image/svg+xml');
             res.end(content.toString());
         });
     });
