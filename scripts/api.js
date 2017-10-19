@@ -72,8 +72,7 @@ hexo.extend.filter.register('server_middleware', (app) => {
             JSON.stringify(
                 hexo.model('Post').toArray()
                     .filter(post => post._id.endsWith(req.body.id_suffix))
-                    .map(post => ({
-                        ...post,
+                    .map(post => Object.assign(post, {
                         sanitized: sanitize(post.title),
                         levenshtein: levenshtein(req.body.sanitized_title, sanitize(post.title))
                     }))
