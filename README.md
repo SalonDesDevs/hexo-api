@@ -36,7 +36,7 @@ Replace `:language` with the language you want the icon of. The result is an svg
 
 ## Dependencies
 
-This API depends on `body-parser` ~~and `devicons`~~. Please make sure to clone the repo recursively.
+This API depends on `body-parser`, `diacritics` ~~and `devicons`~~. Please make sure to clone the repo recursively.
 
 ## License
 

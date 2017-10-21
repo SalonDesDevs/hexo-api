@@ -4,8 +4,9 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const devicons = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../devicon/devicon.json')));
+const {remove: removeDiacritics} = require('diacritics');
 
-const sanitize = title => title.match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();
+const sanitize = title => removeDiacritics(title).match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();
 const levenshtein = (a, b) => {
     let t = [];
     let m = a.length;
@@ -41,7 +42,6 @@ hexo.extend.filter.register('server_middleware', (app) => {
                         date: post.date,
                         tags: post.tags.data.map(c => c.name),
                         id: post._id,
-                        picture: 'https://via.placeholder.com/800x460/3a3a3a/ffffff', //TODO: remove this. Generated on the frontend
                         uri: '/article/' + post._id.substr(-3) + '/' + sanitize(post.title)
                     })
                 )
