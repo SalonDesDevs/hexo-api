@@ -99,7 +99,7 @@ hexo.extend.filter.register('server_middleware', (app) => {
             res.end('');
             return;
         }
-        fs.readFile(path.resolve(__dirname, `../devicon/icons/${language.name}/${language.name}-${variation}.svg`), (err, content) => {
+        fs.readFile(path.resolve(__dirname, `./devicon/icons/${language.name}/${language.name}-${variation}.svg`), (err, content) => {
             res.setHeader('Cache-Control', 'max-age=2678400');
             res.setHeader('Content-Type', 'image/svg+xml');
             res.end(content.toString());

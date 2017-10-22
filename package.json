@@ -1,6 +1,6 @@
 {
   "name": "hexo-sdd-api",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Simple API tailored to our website",
   "main": "index.js",
   "scripts": {
