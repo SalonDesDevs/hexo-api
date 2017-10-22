@@ -3,7 +3,7 @@
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const devicons = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../devicon/devicon.json')));
+const devicons = JSON.parse(fs.readFileSync(path.resolve(__dirname, './devicon/devicon.json')));
 const {remove: removeDiacritics} = require('diacritics');
 
 const sanitize = title => removeDiacritics(title).match(/[a-z ]/gi).join('').replace(/ /g, '-').toLowerCase();

@@ -2,7 +2,7 @@
 
 ## Installation
 
-Place the content of the `scripts` folder of this repo inside the `scripts` folder of your hexo installation (create it if necessary).
+Use `npm install --save hexo-sdd-api`
 
 ## API specifications
 
@@ -22,7 +22,7 @@ which contains the html-formatted content.
 ### `POST /api/post/content/by-uri`
 
 Same as above, but takes a json object with `id_suffix` as a substring of the end of an article id and `sanitized_title` which should match the
-title given in an uri.
+title given in an uri. The match needn't be exact, the closest result is returned
 
 The function that sanitizes a title is the following: 
 
